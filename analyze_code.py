@@ -1,6 +1,7 @@
 import os
 import openai
 
+
 # Initialize the Azure OpenAI client
 openai.api_key = '82d7d9dfc84f443d8b2af93e957624bf'
 openai.api_base = 'https://llm-sermo-nu10.openai.azure.com/'

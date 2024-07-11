@@ -1,6 +1,28 @@
 import os
 import requests
 import json
+import psycopg2
+from psycopg2 import sql
+
+
+def store_analysis_in_db(pr_number, branch_name, merge_status, analysis_text):
+    conn = psycopg2.connect(
+        dbname="patient_data"
+        user="admin",
+        password="s3cr3t",
+        host="localhost",
+        port="5432"
+    )
+    cursor = conn.cursor()
+
+    # Insert analysis results into PostgreSQL
+    cursor.execute("""
+        INSERT INTO analysis_results (pr_number, branch_name, merge_status, analysis_text)
+        VALUES (%s, %s, %s, %s)
+    """, (pr_number, branch_name, merge_status, analysis_text))
+
+    conn.commit()
+    conn.close()
 
 def get_pull_request_number():
     # GitHub event data contains the pull request number
@@ -30,10 +52,15 @@ def post_comment(comment):
         raise Exception(f"Error posting comment: {response.status_code}, {response.text}")
 
 def main():
+    pr_number = get_pull_request_number()
+    branch_name = os.getenv('GITHUB_HEAD_REF')  # GitHub Actions environment variable
+    merge_status = os.getenv('GITHUB_EVENT_NAME')  # Check if it's a pull_request event
+
     with open("analysis.txt", "r") as file:
         analysis = file.read()
 
     post_comment(analysis)
+    store_analysis_in_db(pr_number, branch_name, merge_status, analysis)
 
 if __name__ == "__main__":
     main()
