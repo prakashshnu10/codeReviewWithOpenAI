@@ -10,7 +10,7 @@ def store_analysis_in_db(pr_number, branch_name, merge_status, analysis_text):
         dbname="patient_data",
         user="admin",
         password="s3cr3t",
-        host="127.0.0.1",
+        host="host",
         port="5432"
     )
     cursor = conn.cursor()
