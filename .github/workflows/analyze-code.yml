@@ -32,6 +32,6 @@ jobs:
 
     - name: Post analysis comment
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB}}
       run: |
         python post_comment.py
