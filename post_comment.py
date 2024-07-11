@@ -11,7 +11,7 @@ def get_pull_request_number():
 def post_comment(comment):
     pr_number = get_pull_request_number()
     repo = os.getenv('GITHUB_REPOSITORY')
-    token = os.getenv('TOKEN')  # Adjust the secret name as needed
+    token = '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'
 
     print(f"Repository: {repo}")
     print(f"Pull Request Number: {pr_number}")
