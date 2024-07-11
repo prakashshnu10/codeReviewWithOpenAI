@@ -1,5 +1,6 @@
 import os
 import requests
+import json 
 
 def get_pull_request_number():
     # GitHub event data contains the pull request number
