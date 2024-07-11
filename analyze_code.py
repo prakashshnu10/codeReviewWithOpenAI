@@ -35,8 +35,9 @@ def main():
         print(code)
 
         analysis = get_code_analysis(code)
-        print("Code Analysis:")
-        print(analysis)
+        with open("analysis.txt", "w") as analysis_file:
+            analysis_file.write("Code Analysis:\n")
+            analysis_file.write(analysis)
 
     except Exception as e:
         print(f"An error occurred while reading the file: {e}")
