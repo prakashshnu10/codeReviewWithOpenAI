@@ -60,7 +60,7 @@ def main():
         analysis = file.read()
 
     post_comment(analysis)
-    store_analysis_in_db(pr_number, branch_name, merge_status, analysis)
+    # store_analysis_in_db(pr_number, branch_name, merge_status, analysis)
 
 if __name__ == "__main__":
     main()

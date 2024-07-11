@@ -13,14 +13,14 @@ def get_code_analysis(code):
         engine="sermo",
         messages=[
             {"role": "system", "content": "You are a code analysis assistant."},
-            {"role": "user", "content": f"Analyze the following code:\n\n{code}\n\nProvide insights and suggestions."}
+            {"role": "user", "content": f"Analyze the following code:\n\n{code}\n\nProvide insights and suggestions and can you optimize the time complexity and tell the before time complexity and after time complexity"}
         ],
         max_tokens=150
     )
     return response.choices[0].message['content'].strip()
 
 def main():
-    file_path = "hello.py"
+    file_path = "hello.java"
 
     # Check if the file exists
     if not os.path.exists(file_path):
