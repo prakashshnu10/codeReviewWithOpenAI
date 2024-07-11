@@ -1,6 +1,6 @@
 import os
 import requests
-import json 
+import json
 
 def get_pull_request_number():
     # GitHub event data contains the pull request number
@@ -11,7 +11,11 @@ def get_pull_request_number():
 def post_comment(comment):
     pr_number = get_pull_request_number()
     repo = os.getenv('GITHUB_REPOSITORY')
-    token = os.getenv('GITHUB')
+    token = os.getenv('GITHUB')  # Adjust the secret name as needed
+
+    print(f"Repository: {repo}")
+    print(f"Pull Request Number: {pr_number}")
+    print(f"GITHUB: {token}")
 
     url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
     headers = {
