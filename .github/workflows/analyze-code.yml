@@ -31,5 +31,7 @@ jobs:
         python analyze_code.py > analysis.txt
 
     - name: Post analysis comment
+      env:
+        TOKEN: ${{ secrets.TOKEN}}
       run: |
         python post_comment.py
