@@ -15,7 +15,7 @@ def get_code_analysis(code):
             {"role": "system", "content": "You are a code analysis assistant."},
             {"role": "user", "content": f"Analyze the following code:\n\n{code}\n\nProvide insights and suggestions and can you optimize the time complexity and tell the before time complexity and after time complexity"}
         ],
-        max_tokens=1500
+        max_tokens=200
     )
     return response.choices[0].message['content'].strip()
 
