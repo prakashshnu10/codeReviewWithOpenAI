@@ -7,7 +7,7 @@ from psycopg2 import sql
 
 def store_analysis_in_db(pr_number, branch_name, merge_status, analysis_text):
     conn = psycopg2.connect(
-        dbname="patient_data"
+        dbname="patient_data",
         user="admin",
         password="s3cr3t",
         host="localhost",
