@@ -2,12 +2,14 @@ import os
 import openai
 
 # Initialize the Azure OpenAI client
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
-openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")
+openai.api_key = '82d7d9dfc84f443d8b2af93e957624bf'
+openai.api_base = 'https://llm-sermo-nu10.openai.azure.com/'
+openai.api_type = "azure"
+openai.api_version = "2024-02-15-preview"
 
 def get_code_analysis(code):
     response = openai.ChatCompletion.create(
-        engine="gpt-4",
+        engine="sermo",
         messages=[
             {"role": "system", "content": "You are a code analysis assistant."},
             {"role": "user", "content": f"Analyze the following code:\n\n{code}\n\nProvide insights and suggestions."}
@@ -17,13 +19,27 @@ def get_code_analysis(code):
     return response.choices[0].message['content'].strip()
 
 def main():
-    # Read the code from a file or directory (for simplicity, reading from a single file here)
-    with open("hello.py", "r") as file:
-        code = file.read()
+    file_path = "hello.py"
 
-    analysis = get_code_analysis(code)
-    print("Code Analysis:")
-    print(analysis)
+    # Check if the file exists
+    if not os.path.exists(file_path):
+        print(f"File {file_path} does not exist. Please provide the correct file path.")
+        return
+
+    try:
+        # Read the code from the file
+        with open(file_path, "r") as file:
+            code = file.read()
+
+        print("Code from file:")
+        print(code)
+
+        analysis = get_code_analysis(code)
+        print("Code Analysis:")
+        print(analysis)
+
+    except Exception as e:
+        print(f"An error occurred while reading the file: {e}")
 
 if __name__ == "__main__":
     main()
