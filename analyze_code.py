@@ -1,8 +1,9 @@
 import os
 import openai
 
-# Initialize the OpenAI client
-openai.api_key = os.getenv("82d7d9dfc84f443d8b2af93e957624bf")
+# Initialize the Azure OpenAI client
+openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
+openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")
 
 def get_code_analysis(code):
     response = openai.Completion.create(
