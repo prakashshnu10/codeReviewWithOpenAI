@@ -7,10 +7,10 @@ from psycopg2 import sql
 
 def store_analysis_in_db(pr_number, branch_name, merge_status, analysis_text):
     conn = psycopg2.connect(
-        dbname="patient_data",
-        user="admin",
-        password="s3cr3t",
-        host="localhost",
+        dbname="gen_ai_db_poc",
+        user="prakash_nu10",
+        password="pR8857cKK6m5",
+        host="nu10-wealth-kyc-db.cb5hwvdvchhy.ap-south-1.rds.amazonaws.com",
         port="5432"
     )
     cursor = conn.cursor()
