@@ -15,7 +15,7 @@ class MajorityElement {
 
             // check if frquency is greater than n/2:
             if (cnt > (n / 2))
-                return v[i];
+                return v[i];;
         }
 
         return -1;
